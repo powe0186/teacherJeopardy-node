@@ -1,0 +1,26 @@
+{
+  "name": "teacherjeopardy-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/powe0186/teacherJeopardy-node.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/powe0186/teacherJeopardy-node/issues"
+  },
+  "homepage": "https://github.com/powe0186/teacherJeopardy-node#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.2",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.23.0"
+  }
+}
