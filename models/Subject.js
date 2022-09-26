@@ -17,7 +17,15 @@ Subject.init(
             type: DataTypes.STRING,
             allowNull: false
         }
+    },
+    {
+        sequelize,
+        timestaps: true,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'subject',
     }
-)
+
+);
 
 module.exports = Subject;

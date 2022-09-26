@@ -21,10 +21,21 @@ Clue.init(
             type: DataTypes.STRING,
             allowNull: false
         },
+        isPublic: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
+        },
         user_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'user',
+                key: 'id'
+            }
+        },
+        subject_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'subject',
                 key: 'id'
             }
         }
@@ -33,7 +44,7 @@ Clue.init(
     {
         sequelize,
         timestamps: true,
-        freezeTalbeName: true,
+        freezeTableName: true,
         underscored: true,
         modelName: 'clue'
     }
