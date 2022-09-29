@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
@@ -10,6 +11,14 @@ const SignUpForm = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [passwordsMatch, setPasswordsMatch] = useState(false);
+
+    useEffect(() => {
+        /* global google */
+        google.accounts.id.renderButton(
+            document.getElementById("signInDiv"),
+            { theme: "outline", size: "large" }
+        );
+    }, []);
 
     const checkPasswordMatch = () => {
         if (password === confirmPassword) {
@@ -33,7 +42,7 @@ const SignUpForm = () => {
         event.persist();
         setPassword(event.target.value);
         checkPasswordMatch();
-        
+
     }
 
     const handleConfirmPasswordChange = (event) => {
@@ -53,9 +62,11 @@ const SignUpForm = () => {
                 password
             })
         })
-        .then((res) => console.log("response: ", res))
-        .catch((err) => console.log("error: ", err))
+            .then((res) => console.log("response: ", res))
+            .catch((err) => console.log("error: ", err))
     }
+
+
 
     return (
         <Form onSubmit={handleSubmit}>
@@ -78,6 +89,7 @@ const SignUpForm = () => {
             <Button variant="primary" type="submit">
                 Submit
             </Button>
+            <div id="signInDiv"></div>
         </Form>
 
     );

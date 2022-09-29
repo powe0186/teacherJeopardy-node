@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import SignInButton from '../SignInButton';
 
-function MainNav() {
+function MainNav( { user } ) {
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -29,8 +31,8 @@ function MainNav() {
             </NavDropdown>*/}
           </Nav>
           <Nav>
-            <Nav.Link href="signin">
-              Sign In
+            <Nav.Link>
+              <SignInButton user={ user } />
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

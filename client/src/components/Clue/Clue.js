@@ -3,19 +3,20 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import './Clue.css';
 
-function WithHeaderExample({ clueId, clueText, correctResponse }) {
+function WithHeaderExample({ clueText, correctResponse }) {
 
     // ADD MORE PROPS LATER!!!!!
 
     return (
-        <Card style={{
-            width: '18rem',
-            borderRadius: '1.5rem',
-            border: '3px black solid',
-            backgroundColor: 'blue',
-            margin: '10px'
-        }}>
-            <Card.Body style={{color: 'white'}}>
+        <Card
+            style={{
+                width: '18rem',
+                borderRadius: '1.5rem',
+                border: '3px black solid',
+                backgroundColor: 'blue',
+                margin: '10px'
+            }}>
+            <Card.Body style={{ color: 'white' }} >
                 <Card.Title>{clueText}</Card.Title>
                 <Card.Text>
                     {correctResponse}

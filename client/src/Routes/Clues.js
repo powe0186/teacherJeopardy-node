@@ -29,9 +29,9 @@ const Clues = () => {
         <div className="d-flex p-2 flex-wrap">
             {cluesToRender.map((clue) => 
             <Clue 
+                key={clue.id}
                 clueText={clue.clueText} 
                 correctResponse={clue.correctResponse}
-                clueId = {clue.clueId}
                 />)}
         </div>
 

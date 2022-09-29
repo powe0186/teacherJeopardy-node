@@ -7,7 +7,7 @@ const clueSeedData = require('./clueSeedData.json');
 const categorySeedData = require('./categorySeedData.json');
 
 const seedDatabase = async () => {
-    await sequelize.sync({ alter: true });
+    await sequelize.sync({ force: true });
 
     const user = await User.bulkCreate(userSeedData, {
         individualHooks: true,

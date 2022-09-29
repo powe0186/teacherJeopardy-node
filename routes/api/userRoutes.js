@@ -25,5 +25,27 @@ router.get('/:id/clues', async (req, res) => {
     }
 });
 
+//Create new user
+router.post('/', async (req, res) => {
+    try {
+        
+        const [user, created]= await User.findOrCreate({
+            where: {
+                email: req.body.email,
+            },
+            defaults: {
+                name: req.body.name,
+                email: req.body.email,
+                picture: req.body.picture
+            }
+        });
+
+        console.log(created ? 'New user created' : 'User already exists');
+    } catch(err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
 
 module.exports = router;
