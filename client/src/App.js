@@ -36,6 +36,10 @@ function App() {
     });
   }
 
+  function handleLogout() {
+    setUser({});
+  }
+
 
   useEffect(() => {
     /* global google */
@@ -48,7 +52,7 @@ function App() {
   return (
     <div className="App">
       <React.StrictMode>
-        <MainNav user={user}/>
+        <MainNav user={user} handleLogout={handleLogout}/>
         <BrowserRouter>
           <Routes>
             <Route path="/" >

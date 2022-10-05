@@ -1,0 +1,32 @@
+
+#main {
+    background-image: url("../../images/jeopardy\ board.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 1;
+    height: 1000px;
+    background-color: rgba(61, 61, 218, 0.678);
+    color: white;
+}
+
+.heading {
+    text-align: center;
+    padding: 20px;
+}
+
+#main-columns {
+    height: 500px;
+    margin-left: 10vp;
+}
+
+#column {
+    margin: 10px;
+    border: pink solid 2px;
+    display: block;
+    height: 400px;
+    background-color: #010197;
+}
+
+.paragraph {
+    font-size: 1.3em;
+}

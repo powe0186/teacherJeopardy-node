@@ -20,11 +20,23 @@ Category.hasMany(Clue, {
     onDelete: 'NO ACTION'
 });
 
+//Each category belongs to one user
+Category.belongsTo(User, {
+    foreignKey: 'user_id'
+});
+
+//Each category has many clues. (4, actually)
+Category.hasMany(Clue, {
+    foreignKey: 'id',
+    onDelete: 'NO ACTION',
+});
+
 //Each Game can have multiple (4) categories.
 Game.hasMany(Category, {
     foreignKey: 'category_id',
     onDelete: 'NO ACTION'
 });
+
 
 
 

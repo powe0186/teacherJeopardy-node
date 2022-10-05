@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
-
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import SignInButton from '../SignInButton';
+import SignInButton from '../SingInButton/SignInButton';
 
-function MainNav( { user } ) {
+function MainNav( { user, handleLogout } ) {
+
+
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -15,9 +16,10 @@ function MainNav( { user } ) {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="categories">Categories</Nav.Link>
-            <Nav.Link href="mygames">My Games</Nav.Link>
-            <Nav.Link href="clues">Clues</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="categories" class="logged-in">Categories</Nav.Link>
+            <Nav.Link href="mygames" class="logged-in">My Games</Nav.Link>
+            <Nav.Link href="clues" class="logged-in">Clues</Nav.Link>
             {/*<NavDropdown title="Dropdown" id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
@@ -31,8 +33,8 @@ function MainNav( { user } ) {
             </NavDropdown>*/}
           </Nav>
           <Nav>
-            <Nav.Link>
-              <SignInButton user={ user } />
+            <Nav.Link >
+              <SignInButton user={user} handleLogout={handleLogout} />
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

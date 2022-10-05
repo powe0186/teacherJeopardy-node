@@ -25,6 +25,41 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+//Create a clue
+//This is correctly creating the clue, but the res is an error. WHY???
+router.post('/', (req, res) => {
+    console.log(req.body);
+    try {
+        const newClue = Clue.create({
+            ...req.body
+        });
+        res.status(200).json(newClue);
+    } catch(err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+    
+});
+
+//Edit a clue
+router.put('/:id', (req, res) => {
+    try {
+        const clueChanged = Clue.update(
+            {
+                ...req.body,
+            },
+            {
+                where: { id: req.params.id },
+            }
+        )
+        res.status(200).json(clueChanged);
+    } catch(err) {
+        res.status(500).json(err);
+    }
+});
+
+
+
 
 
 module.exports = router;
