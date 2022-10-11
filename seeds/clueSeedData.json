@@ -2,26 +2,26 @@
     {
         "clueText": "Name this continent: Asia",
         "correctResponse": "Asia",
-        "user_id": "1",
-        "subject_id": "5"
+        "userId": "1",
+        "subjectId": "5"
     },
     {
         "clueText": "This is the sound a doggie makes",
         "correctResponse": "Bow wow or Ruff",
-        "user_id": "1",
-        "subject_id": "5"
+        "userId": "1",
+        "subjectId": "5"
     },
     {
         "clueText": "Is the hot coffee hot hot hot .... or cold?",
         "correctResponse": "Hot",
-        "user_id": "1",
-        "subject_id": "5"
+        "userId": "1",
+        "subjectId": "5"
     },
     {
         "clueText": "It's what you drink out of.",
         "correctResponse": "A leather glove.",
-        "user_id": "1",
-        "subject_id": "5"
+        "userId": "1",
+        "subjectId": "5"
     }
 
 ]

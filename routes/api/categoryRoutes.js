@@ -4,7 +4,11 @@ const { User, Clue, Category, Subject, Game } = require('../../models');
 //Get all categories
 router.get('/', async (req, res) => {
     try {
-        const categoryData = await Category.findAll({ include: User });
+        const categoryData = await Category.findAll({
+            include: [
+                { model: User, attributes: ['name', 'picture']},
+            ]
+    });
         res.status(200).json(categoryData);
     } catch (err) {
         res.status(500).json(err);
@@ -15,7 +19,9 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const categoryData = await Category.findByPk(req.params.id, {
-            include: [{ model: User }, { model: Clue }]
+            include: [
+                { model: User, attributes: ['name', 'picture']},
+            ]
         });
         res.status(200).json(categoryData);
     } catch (err) {

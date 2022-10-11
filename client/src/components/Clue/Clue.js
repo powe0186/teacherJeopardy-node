@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import './Clue.css';
 
-function WithHeaderExample({ clueText, correctResponse }) {
+function WithHeaderExample({ clueText, correctResponse, createdBy }) {
 
     // ADD MORE PROPS LATER!!!!!
 
@@ -19,7 +19,10 @@ function WithHeaderExample({ clueText, correctResponse }) {
             <Card.Body style={{ color: 'white' }} >
                 <Card.Title>{clueText}</Card.Title>
                 <Card.Text>
-                    {correctResponse}
+                    Correct Response: {correctResponse}
+                </Card.Text>
+                <Card.Text>
+                    Created By: {createdBy}
                 </Card.Text>
                 <Button variant="primary">Add Clue</Button>
             </Card.Body>

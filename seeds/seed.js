@@ -7,7 +7,13 @@ const clueSeedData = require('./clueSeedData.json');
 const categorySeedData = require('./categorySeedData.json');
 
 const seedDatabase = async () => {
+
+    /*sync({ force: true }) and sync({ alter: true }) can be destructive operations. 
+    Therefore, they are not recommended for production-level software. 
+    Instead, synchronization should be done with the advanced concept of Migrations, 
+    with the help of the Sequelize CLI. */
     await sequelize.sync({ force: true });
+    console.log("All table models created successfully!");
 
     const user = await User.bulkCreate(userSeedData, {
         individualHooks: true,

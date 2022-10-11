@@ -4,39 +4,14 @@ const Subject = require('./Subject');
 const Category = require('./Category');
 const Game = require('./Game');
 
-//Each reader can have many clues. Each clue belongs to a reader.
-User.hasMany(Clue, {
-    foreignKey: 'clue_id',
-    onDelete: 'CASCADE'
-});
+User.hasMany(Clue, {});
+Clue.belongsTo(User, {});
 
-Clue.belongsTo(User, {
-    foreignKey: 'user_id'
-});
+Subject.hasMany(Clue, {});
+Clue.belongsTo(Subject, {});
 
-//Each Category can have multiple (4) clues.
-Category.hasMany(Clue, {
-    foreignKey: 'clue_id',
-    onDelete: 'NO ACTION'
-});
-
-//Each category belongs to one user
-Category.belongsTo(User, {
-    foreignKey: 'user_id'
-});
-
-//Each category has many clues. (4, actually)
-Category.hasMany(Clue, {
-    foreignKey: 'id',
-    onDelete: 'NO ACTION',
-});
-
-//Each Game can have multiple (4) categories.
-Game.hasMany(Category, {
-    foreignKey: 'category_id',
-    onDelete: 'NO ACTION'
-});
-
+User.hasMany(Category, {});
+Category.belongsTo(User, {});
 
 
 

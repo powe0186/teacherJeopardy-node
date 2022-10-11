@@ -5,7 +5,10 @@ const { User, Clue, Category, Subject, Game } = require('../../models');
 router.get('/', async (req, res) => {
     try {
         const cluesData = await Clue.findAll({
-            include: [{ model: User }]
+            include: [
+                { model: User, attributes: ['name', 'picture']}, 
+                { model: Subject, attributes: ['area'] },
+            ]
         });
         res.status(200).json(cluesData);
     } catch (err) {
@@ -17,7 +20,10 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const clueData = await Clue.findByPk(req.params.id, {
-            include: [{ model: User }]
+            include: [
+                { model: User, attributes: ['name', 'picture']}, 
+                { model: Subject, attributes: ['area'] },
+            ]
         });
         res.status(200).json(clueData);
     } catch (err) {

@@ -32,6 +32,7 @@ const Clues = () => {
                 key={clue.id}
                 clueText={clue.clueText} 
                 correctResponse={clue.correctResponse}
+                createdBy={clue.user.name}
                 />)}
         </div>
 
