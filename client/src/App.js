@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 import ReactDOM from 'react-dom/client';
 import {
   BrowserRouter,
@@ -25,9 +26,12 @@ function App() {
 
   async function handleCallbackResponse(response) {
     var userObject = await jwt_decode(response.credential);
-    let { name, email, picture } = userObject;
-    await setUser({ name, email, picture });
-
+    //convert the exp token to 12 hours instead of 1 hour;
+    userObject.exp = userObject.exp*1000 + 3600000*11;
+    
+    let { name, email, picture, exp } = userObject;
+    await setUser({ name, email, picture, exp });
+    
     const user = await fetch("http://localhost:3001/api/user", {
       method: 'POST',
       mode: 'cors',
