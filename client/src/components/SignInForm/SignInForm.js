@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 
-const SignUpForm = () => {
+const SignInForm = () => {
 
     const [values, setValues] = useState({
         email: '',
@@ -53,4 +53,4 @@ const SignUpForm = () => {
 }
 
 
-export default SignUpForm;
+export default SignInForm;

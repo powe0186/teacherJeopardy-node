@@ -25,14 +25,12 @@ function App() {
   const [user, setUser] = useState({});
 
   async function handleCallbackResponse(response) {
+    localStorage.setItem('TJToken', response.credential);
     var userObject = await jwt_decode(response.credential);
-    //convert the exp token to 12 hours instead of 1 hour;
-    userObject.exp = userObject.exp*1000 + 3600000*11;
-    
     let { name, email, picture, exp } = userObject;
+    //add 12 hours to the token's exp time.
     await setUser({ name, email, picture, exp });
-    
-    const user = await fetch("http://localhost:3001/api/user", {
+    const user = fetch("http://localhost:3001/api/user", {
       method: 'POST',
       mode: 'cors',
       body: JSON.stringify({ name, email, picture }),
@@ -42,6 +40,7 @@ function App() {
 
   function handleLogout() {
     setUser({});
+    localStorage.removeItem('TJToken');
   }
 
 
@@ -50,13 +49,28 @@ function App() {
     google.accounts.id.initialize({
       client_id: "5164407673-c0gg5ta1fjc4335k0174hd6hrp2oavs0.apps.googleusercontent.com",
       callback: handleCallbackResponse
-    });
+    }, []);
+
+    if (localStorage.TJToken) {
+      var userObject = jwt_decode(localStorage.TJToken);
+      let { name, email, picture, exp } = userObject;
+      let date = new Date()
+
+      // Check to see if the token is expired. If not, set User using the token in localStorage.
+      if (exp * 1000 > date.getTime()) {
+        setUser({ name, email, picture, exp });
+      } else {
+        setUser({});
+        localStorage.removeItem('TJToken');
+      }
+      
+    }
   }, []);
 
   return (
     <div className="App">
       <React.StrictMode>
-        <MainNav user={user} handleLogout={handleLogout}/>
+        <MainNav user={user} handleLogout={handleLogout} />
         <BrowserRouter>
           <Routes>
             <Route path="/" >
