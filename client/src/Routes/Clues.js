@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import './css/Clues.css';
 
-const Clues = () => {
+const Clues = ({ user }) => {
 
     const [cluesToRender, setCluesToRender] = useState([]);
 

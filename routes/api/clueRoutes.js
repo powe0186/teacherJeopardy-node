@@ -32,9 +32,8 @@ router.get('/:id', async (req, res) => {
 });
 
 //Create a clue
-//This is correctly creating the clue, but the res is an error. WHY???
 router.post('/', (req, res) => {
-    console.log(req.body);
+    console.log("body: ", req.body);
     try {
         const newClue = Clue.create({
             ...req.body

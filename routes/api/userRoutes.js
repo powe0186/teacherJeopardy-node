@@ -39,8 +39,8 @@ router.post('/', async (req, res) => {
                 picture: req.body.picture
             }
         });
+        res.status(200).json(user)
 
-        console.log(created ? 'New user created' : 'User already exists');
     } catch(err) {
         console.log(err);
         res.status(500).json(err);

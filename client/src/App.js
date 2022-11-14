@@ -16,6 +16,7 @@ import MyGames from './Routes/MyGames';
 import SignIn from './Routes/SignIn';
 import Clues from './Routes/Clues';
 import MainPage from './Routes/MainPage';
+import CreateClue from './Routes/CreateClue';
 
 require('dotenv').config();
 
@@ -28,19 +29,30 @@ function App() {
     localStorage.setItem('TJToken', response.credential);
     var userObject = await jwt_decode(response.credential);
     let { name, email, picture, exp } = userObject;
-    //add 12 hours to the token's exp time.
-    await setUser({ name, email, picture, exp });
-    const user = fetch("http://localhost:3001/api/user", {
+    let user_id;
+
+    const thisUser = await fetch("http://localhost:3001/api/user", {
       method: 'POST',
       mode: 'cors',
       body: JSON.stringify({ name, email, picture }),
       headers: { 'Content-Type': 'application/json' },
-    });
+    })
+      .then(response => response.json())
+      .then(userData => {
+        user_id = userData.id;
+      })
+      .catch((err) => console.log(err));
+
+    await setUser({ name, email, picture, exp, user_id });
+    localStorage.setItem('TJid', user_id);
+    console.log('user id: ', user_id);
+
   }
 
   function handleLogout() {
     setUser({});
     localStorage.removeItem('TJToken');
+    localStorage.removeItem('TJid');
   }
 
 
@@ -53,17 +65,21 @@ function App() {
 
     if (localStorage.TJToken) {
       var userObject = jwt_decode(localStorage.TJToken);
+      let user_id = localStorage.TJid;
       let { name, email, picture, exp } = userObject;
       let date = new Date()
 
       // Check to see if the token is expired. If not, set User using the token in localStorage.
       if (exp * 1000 > date.getTime()) {
-        setUser({ name, email, picture, exp });
+        //get the user's user_id from the database
+        setUser({ name, email, picture, exp, user_id });
+        
       } else {
         setUser({});
         localStorage.removeItem('TJToken');
+        localStorage.removeItem('TJid');
       }
-      
+
     }
   }, []);
 
@@ -78,7 +94,8 @@ function App() {
               <Route path="categories" element={<Categories />} />
               <Route path="mygames" element={<MyGames />} />
               <Route path="signin" element={<SignIn />} />
-              <Route path="clues" element={<Clues />} />
+              <Route path="clues" element={<Clues user={user} />} />
+              <Route path="CreateClue" element={<CreateClue user={  user } />} />
             </Route>
           </Routes>
         </BrowserRouter>
