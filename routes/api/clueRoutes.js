@@ -33,7 +33,7 @@ router.get('/:id', async (req, res) => {
 
 //Create a clue
 router.post('/', (req, res) => {
-    console.log("body: ", req.body);
+    
     try {
         const newClue = Clue.create({
             ...req.body
@@ -44,6 +44,20 @@ router.post('/', (req, res) => {
         res.status(500).json(err);
     }
     
+});
+
+//create multiple clues
+router.post('/bulk', (req, res) => {
+    console.log("body: ", req.body);
+    try {
+        const newClues = Clue.bulkCreate([
+            ...req.body.clues
+        ]);
+        res.status(200).json(newClues);
+    } catch(err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
 });
 
 //Edit a clue

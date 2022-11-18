@@ -17,6 +17,7 @@ import SignIn from './Routes/SignIn';
 import Clues from './Routes/Clues';
 import MainPage from './Routes/MainPage';
 import CreateClue from './Routes/CreateClue';
+import CreateCategory from './Routes/CreateCategory';
 
 require('dotenv').config();
 
@@ -45,7 +46,6 @@ function App() {
 
     await setUser({ name, email, picture, exp, user_id });
     localStorage.setItem('TJid', user_id);
-    console.log('user id: ', user_id);
 
   }
 
@@ -95,7 +95,8 @@ function App() {
               <Route path="mygames" element={<MyGames />} />
               <Route path="signin" element={<SignIn />} />
               <Route path="clues" element={<Clues user={user} />} />
-              <Route path="CreateClue" element={<CreateClue user={  user } />} />
+              <Route path="CreateClue" element={<CreateClue user={user} />} />
+              <Route path="CreateCategory" element={<CreateCategory user={user} />} />
             </Route>
           </Routes>
         </BrowserRouter>

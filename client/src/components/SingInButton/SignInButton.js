@@ -25,7 +25,7 @@ const SignInButton = ({ user, handleLogout }) => {
             <Button onClick={handleLogout} style={{backgroundColor: '010197'}}>
             <img id="user-img" src={user.picture} style={{width: '2em', marginRight: '5px'}}></img>
             {/* Sign Out */}
-            Sign Out User email {user.email}
+            Sign Out
             </Button>
         )
     } else {

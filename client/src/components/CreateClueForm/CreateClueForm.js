@@ -3,17 +3,9 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 
-const CreateClueForm = (  user  ) => {
+const CreateClueForm = ({ user }) => {
 
-    console.log('the user passed to this form: ', user);
     const [values, setValues] = useState({});
-
-    useEffect(() => {
-        setValues({
-            user_id: user.user_id
-        })
-        console.log('The values: ', values);
-    }, [])
 
     const handleClueTextInputChange = (event) => {
         event.persist();
@@ -35,7 +27,7 @@ const CreateClueForm = (  user  ) => {
         event.persist();
         setValues((values) => ({
             ...values,
-            subject: event.target.value
+            subject_id: event.target.value
         }));
     }
 
@@ -50,30 +42,25 @@ const CreateClueForm = (  user  ) => {
     async function handleNewClueSubmit(event) {
         await event.preventDefault();
         //seee if JSON.stringify is working:
-        console.log(values);
-        console.log("new clue data: ", JSON.stringify({
-            clueText: values.clueText,
-            correctResponse: values.correctResponse,
-            isPublic: values.isPublic,
-            subject_id: values.subject,
-            user_id: user.user_id
-        }));
+        // clue data is working
+    
 
         await fetch("http://localhost:3001/api/Clues", {
             method: 'POST',
             mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
             body: JSON.stringify({
-                "clueText": values.clueText,
-                "correctResponse": values.correctResponse,
-                "isPublic": values.isPublic,
-                "subject_id": values.subject,
-                "user_id": user.user_id
+                ...values,
+                userId: user.user_id
             })
         })
             .then(response => response.json())
+            .then(data => console.log(data))
             .catch((err) => console.log(err))
 
-        await console.log("Submitted!: ", values.subject)
+        console.log("Submitted!: ", values.subject)
     }
 
     return (
@@ -82,12 +69,12 @@ const CreateClueForm = (  user  ) => {
         <div>
             <Form>
 
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Group className="mb-3" >
                     <Form.Label>Clue Text - User: {user.user_id}</Form.Label>
                     <Form.Control type="text" id="email" placeholder="clue text" value={values.clueText} onChange={handleClueTextInputChange} />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Group className="mb-3" >
                     <Form.Label>Correct Response</Form.Label>
                     <Form.Control type="text" placeholder="Correct Response" value={values.correctResponse} onChange={handleCorrectResponseInputChange} />
                 </Form.Group>
@@ -106,16 +93,12 @@ const CreateClueForm = (  user  ) => {
                 </Form.Select>
 
                 <Form.Select aria-label="Default select example" onChange={handleisPublicInputChange}>
-
                     <option value="false">private</option>
                     <option value="true">public</option>
-
                 </Form.Select>
 
-
-
                 <Button variant="primary" type="submit" onClick={handleNewClueSubmit}>
-                    Create Clue by {values.user_id}.
+                    Create Clue
                 </Button>
             </Form>
         </div>

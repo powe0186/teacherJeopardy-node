@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Clue from '../components/Clue/Clue';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import CreateClueForm from '../components/CreateClueForm/CreateClueForm';
+import CreateCategoryForm from '../components/CreateCategoryForm/CreateCategoryForm';
 
 
-const CreateClue = ({ user }) => {
+const CreateCategory = ({ user }) => {
     return (
         <div>
-            <CreateClueForm user={ user } />
+            <CreateCategoryForm user={ user }/>
         </div>
     )
 }
 
-export default CreateClue;
+export default CreateCategory;
