@@ -20,6 +20,7 @@ function MainNav( { user, handleLogout } ) {
             <Nav.Link href="clues" class="logged-in">My Clues</Nav.Link>
             <Nav.Link href="CreateClue" class="logged-in">Create Clues</Nav.Link>
             <Nav.Link href="CreateCategory" class="logged-in">Create Category</Nav.Link>
+            <Nav.Link href="CreateGame" class="logged-in">Create Game</Nav.Link>
             {/*<NavDropdown title="Dropdown" id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">

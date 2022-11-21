@@ -27,7 +27,7 @@ const CreateClueForm = ({ user }) => {
         event.persist();
         setValues((values) => ({
             ...values,
-            subject_id: event.target.value
+            subjectId: event.target.value
         }));
     }
 
@@ -57,7 +57,7 @@ const CreateClueForm = ({ user }) => {
             })
         })
             .then(response => response.json())
-            .then(data => console.log(data))
+            .then(data => console.log('data from server: ', data))
             .catch((err) => console.log(err))
 
         console.log("Submitted!: ", values.subject)

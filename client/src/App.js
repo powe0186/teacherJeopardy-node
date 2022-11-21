@@ -18,7 +18,7 @@ import Clues from './Routes/Clues';
 import MainPage from './Routes/MainPage';
 import CreateClue from './Routes/CreateClue';
 import CreateCategory from './Routes/CreateCategory';
-
+import CreateGame from './Routes/CreateGame';
 require('dotenv').config();
 
 
@@ -97,6 +97,7 @@ function App() {
               <Route path="clues" element={<Clues user={user} />} />
               <Route path="CreateClue" element={<CreateClue user={user} />} />
               <Route path="CreateCategory" element={<CreateCategory user={user} />} />
+              <Route path="CreateGame" element={<CreateGame user={user} />} />
             </Route>
           </Routes>
         </BrowserRouter>

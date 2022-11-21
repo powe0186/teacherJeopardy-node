@@ -6,7 +6,7 @@ router.get('/', async (req, res) => {
     try {
         const cluesData = await Clue.findAll({
             include: [
-                { model: User, attributes: ['name', 'picture']}, 
+                { model: User, attributes: ['name', 'picture'] },
                 { model: Subject, attributes: ['area'] },
             ]
         });
@@ -21,7 +21,7 @@ router.get('/:id', async (req, res) => {
     try {
         const clueData = await Clue.findByPk(req.params.id, {
             include: [
-                { model: User, attributes: ['name', 'picture']}, 
+                { model: User, attributes: ['name', 'picture'] },
                 { model: Subject, attributes: ['area'] },
             ]
         });
@@ -33,31 +33,32 @@ router.get('/:id', async (req, res) => {
 
 //Create a clue
 router.post('/', (req, res) => {
-    
-    try {
-        const newClue = Clue.create({
-            ...req.body
-        });
-        res.status(200).json(newClue);
-    } catch(err) {
-        console.log(err);
-        res.status(500).json(err);
-    }
-    
+
+    Clue.create({
+        ...req.body
+    })
+        .then((newClue) => {
+            res.status(200).json(newClue);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        })
 });
 
 //create multiple clues
 router.post('/bulk', (req, res) => {
-    console.log("body: ", req.body);
-    try {
-        const newClues = Clue.bulkCreate([
-            ...req.body.clues
-        ]);
-        res.status(200).json(newClues);
-    } catch(err) {
-        console.log(err);
-        res.status(500).json(err);
-    }
+
+    Clue.bulkCreate([
+        ...req.body.clues
+    ])
+        .then((newClues) => {
+            res.status(200).json(newClues);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        })
 });
 
 //Edit a clue
@@ -72,13 +73,28 @@ router.put('/:id', (req, res) => {
             }
         )
         res.status(200).json(clueChanged);
-    } catch(err) {
+    } catch (err) {
         res.status(500).json(err);
     }
 });
 
-
-
+//Get all clues by a specific user ID:
+router.get('/user/:id', async (req, res) => {
+    try {
+        const cluesData = await Clue.findAll({
+            where: {
+                userId: req.params.id
+            },
+            include: [
+                { model: User, attributes: ['name', 'picture'] },
+                { model: Subject, attributes: ['area'] },
+            ]
+        });
+        res.status(200).json(cluesData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 
 
 module.exports = router;

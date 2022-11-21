@@ -9,7 +9,7 @@ const CreateCategoryForm = ({ user }) => {
         clue1: {},
         clue2: {},
         clue3: {},
-        clue4: {}
+        clue4: {},
     });
 
     const clue1TextChange = (event) => {
@@ -116,12 +116,16 @@ const CreateCategoryForm = ({ user }) => {
         }));
     }
 
+    const categoryNameChange = (event) => {
+        event.persist();
+        setValues((values) => ({
+            ...values,
+            categoryName: event.target.value
+        }));
+    }
+
     async function handleNewCategorySubmit(event) {
         await event.preventDefault();
-        let clue1Id;
-        let clue2Id;
-        let clue3Id;
-        let clue4Id;
 
         await fetch("http://localhost:3001/api/Clues/bulk", {
             method: 'POST',
@@ -135,25 +139,25 @@ const CreateCategoryForm = ({ user }) => {
                         ...values.clue1,
                         userId: user.user_id,
                         isPublic: values.isPublic,
-                        subject_id: values.subject_id
+                        subjectId: values.subject_id
                     },
                     { 
                         ...values.clue2,
                         userId: user.user_id,
                         isPublic: values.isPublic,
-                        subject_id: values.subject_id
+                        subjectId: values.subject_id
                     },
                     { 
                         ...values.clue3,
                         userId: user.user_id,
                         isPublic: values.isPublic,
-                        subject_id: values.subject_id
+                        subjectId: values.subject_id
                     },
                     { 
                         ...values.clue4,
                         userId: user.user_id,
                         isPublic: values.isPublic,
-                        subject_id: values.subject_id
+                        subjectId: values.subject_id
                     }
                 ]
             })
@@ -171,6 +175,11 @@ const CreateCategoryForm = ({ user }) => {
         <div>
             <Form>
                 <div className="clue-form">
+                <Form.Group className="mb-3" >
+                        <Form.Label>Category Name</Form.Label>
+                        <Form.Control type="text" placeholder="Category Name" value={values.categoryName} onChange={categoryNameChange} />
+                    </Form.Group>
+
                     <Form.Group className="mb-3" >
                         <Form.Label>Clue Text - User: {user.user_id}</Form.Label>
                         <Form.Control type="text" placeholder="clue text" value={values.clue1.clueText} onChange={clue1TextChange} />
