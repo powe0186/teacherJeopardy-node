@@ -7,7 +7,7 @@ import CreateCategoryForm from '../components/CreateCategoryForm/CreateCategoryF
 
 const CreateCategory = ({ user }) => {
     return (
-        <div>
+        <div style={{backgroundColor: "blue"}}>
             <CreateCategoryForm user={ user }/>
         </div>
     )
