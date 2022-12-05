@@ -84,7 +84,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="App"style={ {backgroundColor: "blue", height: "100vh"} }>
       <React.StrictMode>
         <MainNav user={user} handleLogout={handleLogout} />
         <BrowserRouter>

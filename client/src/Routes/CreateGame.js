@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Clue from '../components/Clue/Clue';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import CreateCategoryForm from '../components/CreateCategoryForm/CreateCategoryForm';
+import CreateGameForm from '../components/CreateGameForm/CreateGameForm';
 
 
 const CreateGame = ({ user }) => {
-    return (
-        <div>
-            <p>Create Game for {user.name}</p>
-        </div>
-    )
+        return (
+            <div style={{ backgroundColor: "blue", height: "100vh" }}>
+                <CreateGameForm user={user} />
+            </div>
+        )
 }
 
 export default CreateGame;
