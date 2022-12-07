@@ -7,7 +7,7 @@ import CreateGameForm from '../components/CreateGameForm/CreateGameForm';
 
 const CreateGame = ({ user }) => {
         return (
-            <div style={{ backgroundColor: "blue", height: "100vh" }}>
+            <div style={{ backgroundColor: "blue" }}>
                 <CreateGameForm user={user} />
             </div>
         )

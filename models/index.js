@@ -13,7 +13,8 @@ Clue.belongsTo(Subject, {});
 User.hasMany(Category, {});
 Category.belongsTo(User, {});
 
-
+User.hasMany(Game, {});
+Game.belongsTo(User, {});
 
 
 module.exports = { User, Clue, Subject, Category, Game }
