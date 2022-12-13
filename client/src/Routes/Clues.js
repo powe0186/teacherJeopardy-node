@@ -17,7 +17,6 @@ const Clues = ({ user }) => {
         })
             .then(response => response.json())
             .then((data) => {
-                console.log('clues we got back: ', data);
                 setCluesToRender(data);
             })
             .catch((err) => console.log(err))

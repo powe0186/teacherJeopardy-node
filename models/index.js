@@ -17,4 +17,6 @@ User.hasMany(Game, {});
 Game.belongsTo(User, {});
 
 
+
+
 module.exports = { User, Clue, Subject, Category, Game }

@@ -92,7 +92,7 @@ function App() {
             <Route path="/" >
               <Route path="/" element={<MainPage />} />
               <Route path="categories" element={<Categories />} />
-              <Route path="mygames" element={<MyGames />} />
+              <Route path="mygames" element={<MyGames user={user} />} />
               <Route path="signin" element={<SignIn />} />
               <Route path="clues" element={<Clues user={user} />} />
               <Route path="CreateClue" element={<CreateClue user={user} />} />
